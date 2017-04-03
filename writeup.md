@@ -48,6 +48,9 @@ The preprocessing pipeline of the data consists of the following steps;
 + Per-sample **mean substracion**: this normalization has the property of removing the average brightness (intensity) of the data point. In this case, we are not interested in the illumination conditions of the image, but more so in the content.
 
 For instance, the following samples:
+
 ![original_sample]
+
 are transformed into:
+
 ![prep_sample]
