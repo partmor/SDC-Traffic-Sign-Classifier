@@ -147,9 +147,7 @@ Here are some examples of German traffic signs I found on the web (original full
 
 From the latter image I pull two cases: one with a tight bounding box to the 30 km/h limit sign (easy), and another with a wither box that also includes the text sign underneath (more difficult, has interaction with another unknown sign). 
 
-![f2]
-
-![f3]
+![f2] ![f3]
 
 ![f4] 
 
@@ -164,6 +162,17 @@ From this last image I generate two samples: one with a tight box on the yield s
 The custom test set finally consists of the following data:
 
 ![new_test_cases]
+
+| Test sample			    |     Class | 
+|:---------------------:|:---------------------:| 
+| 1      		| 1	- Speed limit (30km/h)		| 
+| 2     		| 14 -Stop				|
+| 3					|28	- Children crossing			|
+| 4      		| 30 - Beware of ice/snow			| 
+| 5     		| 13 - Yield					|
+| 6					|13 - Yield				|
+| 7     		| 12 - Priority road					|
+| 8					|1 - Speed limit (30km/h)				|
 
 The accuracy for this mini-test set is 0.750 (correctly classified 6/8 cases), noticeably lower than the score obtained on the given test set. Two facts should be highlighted:
 + This set is not big enough for a population-averaged score to be meaningful at all (noise has a huge impact on outcome).
