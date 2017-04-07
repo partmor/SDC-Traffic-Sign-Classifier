@@ -76,6 +76,8 @@ and their affine transforms:
 
 A potential issue that has not been covered here is the class unbalance. The model's robustness could further be improved by generating *perturbed* samples at a rate such that the class distribution within the training is uniform.
 
+Further transformations that could be applied to the data with the aim to improve robustness by simulating other real-world effects are Gaussian kernels (this would simulate movement blur), or random noise (faulty receptors). 
+
 ### Model Architecture
 
 For this challenge I use a **2-stage ConvNet** with **multi-scale** feature architecture (MS) followed by a classifier that consists of **two fully connected layers**. 
