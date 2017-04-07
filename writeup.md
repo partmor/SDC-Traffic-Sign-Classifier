@@ -22,6 +22,7 @@
 [cn1_filters]: ./examples/cn1_filters.png 
 [cn1_fmaps]: ./examples/cn1_fmaps.png 
 [new_test_cases]: ./examples/new_test_cases.png 
+[softmax]: ./examples/softmax.png 
 
 ### Data Set Summary & Exploration
 
@@ -178,6 +179,16 @@ The accuracy for this mini-test set is 0.750 (correctly classified 6/8 cases), n
 + This set is not big enough for a population-averaged score to be meaningful at all (noise has a huge impact on outcome).
 + This set has been intentionally tweaked to contain singularities to challenge the model. 
 
+Bearing in mind the intentionallity of the selected new test set, it is very insightful to analyze the model certainty through the softmax probabilities:
+
+![softmax]
+
+The model is very confident (near 100 %) in the so-called *easy* cases. It actually got right confidently one of our difficult cases, case 5-6: yield sign in presence of (half) a roundabout sign.
+
+What happened to the cases where the model missed?
++ Test sample 4: it is a half-ocluded snow warning sign. It has been classified as a "Childrens crossing", but with less than 60% certainty. The true label comes second with 17 %, sharing top-5 with "Road narrows on the right", "Bicycles crossing" and "Pedestrians". The model did not completely fail, since the true label was its second favourite option, and all top-5 softmax probabilities correspond to signs with a triangular shape, red edges, white background, and central black pattern. Apparently, a near 50 % occlussion of the sign has been *too much* for the model.
++ Test sample 8: it is a 30 km/h limit sign, in presence of a text sign. The banner underneath seems to have misslead the model, and gives 51 % probability to "50 km/h limit" sign, and 48 % to the true label. The model was near to get the correct answer, but still a reasonable mistake, since these two signs *only* differ in the position of the 3/5 figure.
+
 ### Neural Network Visualization
 
 As an illustration of what a trained neural network looks like, I present a visualization of the first stage ConvNet filter weights, and another visualization for the 1st stage ConvNet feature maps of a sample fed to the model (that of test case 1).
@@ -186,7 +197,7 @@ The 1st stage ConvNet filter weights can be represented as 32 5x5 px grayscale i
 
 ![cn1_filters]
 
-As expected the first layer contains filters that can detect very local patterns, like edges and lines. Hence the feature maps of the inputed image:
+As expected the first layer contains filters that can detect local patterns, like edges and lines. Hence the feature maps of the inputed image:
 
 ![cn1_fmaps]
 
