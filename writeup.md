@@ -19,6 +19,8 @@
 [f4]: ./examples/test4_fullsize.jpg 
 [f5]: ./examples/test5_fullsize.jpg 
 [f7]: ./examples/test7_fullsize.jpg 
+[cn1_filters]: ./examples/cn1_filters.png 
+[cn1_fmaps]: ./examples/cn1_fmaps.png 
 
 ### Data Set Summary & Exploration
 
@@ -130,24 +132,48 @@ Using a learning rate of 5e-4, a batch size of 128, and 50 epochs with the given
 
 | Dataset			    |     Accuracy | 
 |:---------------------:|:---------------------:| 
-| Training      		| 0.982				| 
-| Validation     		| 0.975 					|
-| Test					| 0.964				|
+| Training      		| 0.986				| 
+| Validation     		| 0.978 					|
+| Test					| 0.958				|
 
 The multi-scale architecture was chosen since it outperforms single-scale architectures like LeNet-5 for this particular problem. From my experience with this project, tweaking the modified Lenet-5 (and similar architectures) could hardly take the model beyond the 0.93 on validation set and 0.91 on test set; using the MS model, this could be accomplished after less than 10 epochs, with a lower training accuracy, i.e, with a lower propensity to overfitting.
 
 ### Testing Model on New Images
 
-Here are some examples of German traffic signs I found on the web:
+Here are some examples of German traffic signs I found on the web (original fullsize). Some of them were chosen for a particular reason in order to challenge the model:
 
-![f1] I found this image interesting since I can pull two cases from here: one with a tight bounding box to the 30 km/h limit sign (easy), and another with a wither box that also includes the text sign underneath (more difficult, has interaction with another unknown sign). 
+![f1] 
 
-![f2] Easy sample.
+From the latter image I pull two cases: one with a tight bounding box to the 30 km/h limit sign (easy), and another with a wither box that also includes the text sign underneath (more difficult, has interaction with another unknown sign). 
 
-![f3] I apply tight bounding box. Easy sample.
+![f2]
 
-![f4] This sample is interesting since it is partially ocluded by snow.
+![f3]
 
-![f5] From this image I generate two samples: one with a tight box on the yield sign (easy), and another including the other sign partially to add difficulty.
+![f4] 
 
-![f7] Easy example.
+This sample is interesting since it is partially ocluded by snow.
+
+![f5] 
+
+From this image I generate two samples: one with a tight box on the yield sign (easy), and another including the other sign partially to add difficulty.
+
+![f7] 
+
+The accuracy for this mini-test set is 0.750 (correctly classified 6/8 cases), noticeably lower than the score obtained on the given test set. Two facts should be highlighted:
++ This set is not big enough for a population-averaged score to be meaningful at all (noise has a huge impact on outcome).
++ This set has been intentionally tweaked to contain singularities to challenge the model. 
+
+### Neural Network Visualization
+
+As an illustration of what a trained neural network looks like, I present a visualization of the first stage ConvNet filter weights, and another visualization for the 1st stage ConvNet feature maps of a sample fed to the model (that of test case 1).
+
+The 1st stage ConvNet filter weights can be represented as 32 5x5 px grayscale images (to improve visualization a bilinear interpolation has been applied):
+
+![cn1_filters]
+
+As expected the first layer contains filters that can detect very local patterns, like edges and lines. Hence the feature maps of the inputed image:
+
+![cn1_fmaps]
+
+consist of slightly shifted and rotated representations of the original image.
