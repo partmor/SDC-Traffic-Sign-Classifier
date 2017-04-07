@@ -13,6 +13,12 @@
 [architecture]: ./examples/architecture.jpg
 [prep_sample_2]: ./examples/prep_sample_2.png 
 [deformed_sample]: ./examples/deformed_sample.png 
+[f1]: ./examples/test1_fullsize.jpg 
+[f2]: ./examples/test2_fullsize.jpg 
+[f3]: ./examples/test3_fullsize.jpg 
+[f4]: ./examples/test4_fullsize.jpg 
+[f5]: ./examples/test5_fullsize.jpg 
+[f7]: ./examples/test7_fullsize.jpg 
 
 ### Data Set Summary & Exploration
 
@@ -108,8 +114,6 @@ A summary of the parameters used for the model can be found in the following tab
 | **Output**				| Fully connected layer	|43 units| 1x43
 | 	| Softmax	| | 1x43
 
-The multi-scale architecture was chosen since it outperforms single-scale architectures like LeNet-5 for this particular problem. From my experience with this project, tweaking the modified Lenet-5 (and similar architectures) could hardly take the model beyond the 0.93 validation accuracy challenge threshold; using the MS model, this could be accomplished after less than 10 epochs, with a lower training accuracy, i.e, with a lower propensity to overfitting.
-
 ### Model training
 
 The objective loss function to minimize is the **cross entropy** over the training set. This function is minimized using the **Adam optimizer**, a method that computes adaptive learning rates for each parameter. [Kingma et al., 2014](https://arxiv.org/abs/1412.6980), show empirically that Adam compares favorably to other adaptive learning-method algorithms. 
@@ -130,3 +134,20 @@ Using a learning rate of 5e-4, a batch size of 128, and 50 epochs with the given
 | Validation     		| 0.975 					|
 | Test					| 0.964				|
 
+The multi-scale architecture was chosen since it outperforms single-scale architectures like LeNet-5 for this particular problem. From my experience with this project, tweaking the modified Lenet-5 (and similar architectures) could hardly take the model beyond the 0.93 on validation set and 0.91 on test set; using the MS model, this could be accomplished after less than 10 epochs, with a lower training accuracy, i.e, with a lower propensity to overfitting.
+
+### Testing Model on New Images
+
+Here are some examples of German traffic signs I found on the web:
+
+![f1] I found this image interesting since I can pull two cases from here: one with a tight bounding box to the 30 km/h limit sign (easy), and another with a wither box that also includes the text sign underneath (more difficult, has interaction with another unknown sign). 
+
+![f2] Easy sample.
+
+![f3] I apply tight bounding box. Easy sample.
+
+![f4] This sample is interesting since it is partially ocluded by snow.
+
+![f5] From this image I generate two samples: one with a tight box on the yield sign (easy), and another including the other sign partially to add difficulty.
+
+![f7] Easy example.
