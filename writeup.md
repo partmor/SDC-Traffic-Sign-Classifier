@@ -21,6 +21,7 @@
 [f7]: ./examples/test7_fullsize.jpg 
 [cn1_filters]: ./examples/cn1_filters.png 
 [cn1_fmaps]: ./examples/cn1_fmaps.png 
+[new_test_cases]: ./examples/new_test_cases.png 
 
 ### Data Set Summary & Exploration
 
@@ -152,13 +153,17 @@ From the latter image I pull two cases: one with a tight bounding box to the 30 
 
 ![f4] 
 
-This sample is interesting since it is partially ocluded by snow.
+The above sample is interesting since it is partially ocluded by snow.
 
 ![f5] 
 
-From this image I generate two samples: one with a tight box on the yield sign (easy), and another including the other sign partially to add difficulty.
+From this last image I generate two samples: one with a tight box on the yield sign (easy), and another including the other sign partially to add difficulty.
 
 ![f7] 
+
+The custom test set finally consists of the following data:
+
+![new_test_cases]
 
 The accuracy for this mini-test set is 0.750 (correctly classified 6/8 cases), noticeably lower than the score obtained on the given test set. Two facts should be highlighted:
 + This set is not big enough for a population-averaged score to be meaningful at all (noise has a huge impact on outcome).
