@@ -1,4 +1,4 @@
-# CarND-TrafficSignClassifier-P2
+# Traffic Sign Classifier
 [original_sample]: ./examples/original_sample.png 
 [architecture]: ./examples/architecture.jpg
 [deformed_sample]: ./examples/deformed_sample.png 
